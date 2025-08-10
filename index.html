@@ -4,17 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timeline App</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg-light: #ffffff;
-      --text-light: #111;
-      --card-light: #f9f9f9;
-      --bg-dark: #121212;
-      --text-dark: #f1f1f1;
-      --card-dark: #1e1e1e;
+      --bg-light: linear-gradient(135deg, #f4f9ff, #fff5f7);
+      --bg-dark: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --text-light: #222;
+      --text-dark: #f5f5f5;
+      --card-light: #ffffff;
+      --card-dark: #1c1c1c;
+      --accent: #0077ff;
+      --accent-light: #4da3ff;
+      --radius: 10px;
+      --transition: 0.3s ease;
       --color-1: #7ab800;
       --color-2: #007acc;
       --color-3: #e91e63;
@@ -26,200 +29,191 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
       background: var(--bg-light);
       color: var(--text-light);
-      transition: background 0.3s, color 0.3s;
+      transition: background var(--transition), color var(--transition);
     }
 
+    /* Theme Toggle */
     #theme-toggle {
       position: absolute;
       left: -9999px;
     }
-
     #theme-toggle:checked ~ .theme-wrapper {
       background: var(--bg-dark);
       color: var(--text-dark);
     }
-
     #theme-toggle:checked ~ .theme-wrapper .cont {
       background: var(--card-dark);
     }
-
-    #theme-toggle:checked ~ .theme-wrapper footer {
-      background-color: #1a1a1a;
-      color: #ccc;
-    }
-
     #theme-toggle:checked ~ .theme-wrapper header {
-      background: #000;
+      background: rgba(0,0,0,0.85);
       color: #fff;
     }
+    #theme-toggle:checked ~ .theme-wrapper footer {
+      background: #111;
+      color: #ccc;
+    }
+    #theme-toggle:checked ~ .theme-wrapper header label {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    }
 
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: #222;
+      background: var(--accent);
       color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-
     .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
-
     label[for="theme-toggle"] {
       background: #fff;
-      color: #000;
-      padding: 0.4rem 0.8rem;
-      border-radius: 5px;
+      color: var(--accent);
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius);
       cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
     }
-
-    #theme-toggle:checked ~ .theme-wrapper header label[for="theme-toggle"] {
-      background: #000;
+    label[for="theme-toggle"]:hover {
+      background: var(--accent-light);
       color: #fff;
-      border: 1px solid #fff;
     }
 
+    /* Typography */
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    time {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    
     main {
       padding: 2rem;
     }
-
     #timeline {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
+    
     .line {
-      list-style: none;
-      border-left: 4px solid var(--color-1);
-      padding-left: 30px;
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .line {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
+    
     .line li {
-      margin: 40px 0;
+      list-style: none;
       position: relative;
+      padding-left: 2.5rem;
     }
-
     .line li::before {
       content: "";
       position: absolute;
-      left: -38px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      background-color: var(--color-1);
+      left: 0;
+      top: 1rem;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
     }
+    .line li:nth-child(1)::before { background: var(--color-1); }
+    .line li:nth-child(2)::before { background: var(--color-2); }
+    .line li:nth-child(3)::before { background: var(--color-3); }
+    .line li:nth-child(4)::before { background: var(--color-4); }
+    .line li:nth-child(5)::before { background: var(--color-5); }
+    .line li:nth-child(6)::before { background: var(--color-6); }
 
-    .line li:nth-child(2)::before { background-color: var(--color-2); }
-    .line li:nth-child(3)::before { background-color: var(--color-3); }
-    .line li:nth-child(4)::before { background-color: var(--color-4); }
-    .line li:nth-child(5)::before { background-color: var(--color-5); }
-    .line li:nth-child(6)::before { background-color: var(--color-6); }
-
-    .line li:nth-child(1) .cont { background-color: var(--color-1); color: white; }
-    .line li:nth-child(2) .cont { background-color: var(--color-2); color: white; }
-    .line li:nth-child(3) .cont { background-color: var(--color-3); color: white; }
-    .line li:nth-child(4) .cont { background-color: var(--color-4); color: white; }
-    .line li:nth-child(5) .cont { background-color: var(--color-5); color: white; }
-    .line li:nth-child(6) .cont { background-color: var(--color-6); color: white; }
-
+    
     .cont {
+      border-radius: var(--radius);
       padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s, background 0.3s, color 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform var(--transition), box-shadow var(--transition);
+      color: #fff;
     }
+    .line li:nth-child(1) .cont { background: var(--color-1); }
+    .line li:nth-child(2) .cont { background: var(--color-2); }
+    .line li:nth-child(3) .cont { background: var(--color-3); }
+    .line li:nth-child(4) .cont { background: var(--color-4); }
+    .line li:nth-child(5) .cont { background: var(--color-5); }
+    .line li:nth-child(6) .cont { background: var(--color-6); }
 
     .cont:hover {
-      transform: scale(1.02);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
 
-    .cont h3 {
-      margin-top: 0;
-    }
-
-    .cont time {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      color: #eee;
-    }
-
-    .read-more-content {
-      max-height: 3.5em;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .read-more-toggle:checked ~ .read-more-content {
-      max-height: none;
-    }
-
-    .read-more-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 6px 12px;
-      font-size: 0.9rem;
-      background: #2196f3;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .copy-right {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
-
-    #modal {
+    
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
       display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .modal.show {
+      display: flex;
     }
 
+   
     footer {
       text-align: center;
       padding: 1rem;
-      background-color: #f0f0f0;
+      background: #f0f0f0;
       color: #444;
+      font-size: 0.9rem;
     }
 
-    @media screen and (max-width: 600px) {
-      .line {
-        padding-left: 20px;
-      }
-
-      .cont h3 {
-        font-size: 1.1rem;
-      }
-
-      .cont p {
-        font-size: 0.95rem;
-      }
-
-      .line li::before {
-        left: -34px;
-      }
+    @media (max-width: 767px) {
+      main { padding: 1rem; }
+      .cont h3 { font-size: 1.1rem; }
+      .cont p { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
-
   <input type="checkbox" id="theme-toggle" />
 
   <div class="theme-wrapper">
     <header>
       <div class="logo">TimelineApp</div>
-      <label for="theme-toggle" role="switch" aria-checked="false">Toggle Theme</label>
+      <label for="theme-toggle">Toggle Theme</label>
     </header>
 
     <main>
@@ -235,28 +229,28 @@
           <li>
             <div class="cont">
               <h3>UI/UX Design Phase</h3>
-              <p>During the UI/UX design phase, wireframes were carefully crafted to outline the structure and flow of the application, ensuring a user-centric approach. These low-fidelity sketches helped visualize key screens and interactions early in the process. Based on feedback and usability considerations, the wireframes were iteratively refined and transformed into high-fidelity UI designs that aligned with the brand guidelines and user expectations. The finalized designs provided a clear visual reference for the development team, streamlining the implementation process and enhancing the overall user experience.</p>
+              <p>Wireframes created, refined, and transformed into high-fidelity UI designs aligned with the brand.</p>
               <time>15 Jan, 2025</time>
             </div>
           </li>
           <li>
             <div class="cont">
               <h3>Frontend Development</h3>
-              <p>Frontend development phase, dynamic interactions were implemented to enhance user engagement and responsiveness across the application. Form validations were added to ensure data accuracy and provide real-time feedback to users, improving usability and reducing input errors. Modern frontend technologies and best practices were used to create a seamless and intuitive user experience, with attention to accessibility, responsiveness, and performance.</p>
+              <p>Dynamic interactions implemented with form validations for better user experience and responsiveness.</p>
               <time>01 Feb, 2025</time>
             </div>
           </li>
           <li>
             <div class="cont">
               <h3>Backend Development</h3>
-              <p>Backend development phase, RESTful APIs were designed and implemented to handle client-server communication efficiently. These APIs facilitated key operations such as data retrieval, creation, updating, and deletion, ensuring smooth interaction between the frontend and backend systems. The application was integrated with a relational database to store and manage data securely, with optimized queries and proper schema design. Emphasis was placed on scalability, performance, and maintaining clean, modular code to support future enhancements and integration.</p>
+              <p>RESTful APIs integrated with database for secure, scalable operations and smooth frontend-backend communication.</p>
               <time>20 Feb, 2025</time>
             </div>
           </li>
           <li>
             <div class="cont">
               <h3>Deployment & Handover</h3>
-              <p>Deployed the app and delivered to the client. The deployment and handover phase, the application was successfully deployed to the production environment, ensuring all features functioned as intended in a live setting. Final testing and performance checks were conducted to guarantee stability and reliability. The project was officially delivered to the client on 10th March 2025, along with the necessary documentation, credentials, and support guidelines to ensure a smooth transition and onboarding experience.</p>
+              <p>Application deployed to production, tested, and delivered to the client with documentation.</p>
               <time>10 Mar, 2025</time>
             </div>
           </li>
@@ -265,22 +259,26 @@
               <h3>SpringBoot</h3>
               <input type="checkbox" id="toggle-read-more" class="read-more-toggle" hidden>
               <div class="read-more-content">
-                <p>Spring Boot is a powerful Java-based framework designed to simplify the development of standalone, production-ready Spring applications. It eliminates the need for extensive configuration by providing auto-configuration, embedded web servers like Tomcat, and built-in tools for monitoring and deployment. With Spring Boot, developers can quickly build RESTful APIs, connect to databases, and manage application behavior using properties files or environment variables. Its support for microservices architecture and seamless integration with tools like Spring Data, Spring Security, and Spring Cloud makes it a go-to choice for modern enterprise application development.</p>
+                <p>Spring Boot is a Java-based framework that simplifies creating production-ready Spring applications with minimal configuration.</p>
               </div>
               <label for="toggle-read-more" class="read-more-btn">Learn More</label>
               <time>16 May, 2025</time>
             </div>
           </li>
         </ul>
-
         <p class="copy-right">&copy; 2025 Niranjana Y D. All rights reserved.</p>
       </section>
-      <div id="modal"></div>
     </main>
 
-    <footer>
-      Developed by NIRANJANA Y D
-    </footer>
+    <footer>Developed by NIRANJANA Y D</footer>
+  </div>
+
+  
+  <div class="modal" id="exampleModal">
+    <div class="modal-content">
+      <h2>Modal Title</h2>
+      <p>This is a placeholder modal content.</p>
+    </div>
   </div>
 </body>
 </html>

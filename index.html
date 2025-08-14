@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timeline App</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --bg-light: linear-gradient(135deg, #f4f9ff, #fff5f7);
@@ -25,7 +24,6 @@
       --color-5: #9c27b0;
       --color-6: #4caf50;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -33,113 +31,36 @@
       color: var(--text-light);
       transition: background var(--transition), color var(--transition);
     }
-
-    /* Theme Toggle */
-    #theme-toggle {
-      position: absolute;
-      left: -9999px;
-    }
-    #theme-toggle:checked ~ .theme-wrapper {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    #theme-toggle:checked ~ .theme-wrapper .cont {
-      background: var(--card-dark);
-    }
-    #theme-toggle:checked ~ .theme-wrapper header {
-      background: rgba(0,0,0,0.85);
-      color: #fff;
-    }
-    #theme-toggle:checked ~ .theme-wrapper footer {
-      background: #111;
-      color: #ccc;
-    }
-    #theme-toggle:checked ~ .theme-wrapper header label {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #fff;
-    }
-
-    /* Header */
+    #theme-toggle { position: absolute; left: -9999px; }
+    #theme-toggle:checked ~ .theme-wrapper { background: var(--bg-dark); color: var(--text-dark); }
+    #theme-toggle:checked ~ .theme-wrapper .cont { background: var(--card-dark); }
+    #theme-toggle:checked ~ .theme-wrapper header { background: rgba(0,0,0,0.85); color: #fff; }
+    #theme-toggle:checked ~ .theme-wrapper footer { background: #111; color: #ccc; }
+    #theme-toggle:checked ~ .theme-wrapper header label { background: transparent; color: #fff; border: 1px solid #fff; }
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: var(--accent);
-      color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: var(--accent); color: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+    .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; }
     label[for="theme-toggle"] {
-      background: #fff;
-      color: var(--accent);
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: var(--transition);
-      font-weight: 500;
+      background: #fff; color: var(--accent);
+      padding: 0.4rem 0.9rem; border-radius: var(--radius);
+      cursor: pointer; transition: var(--transition); font-weight: 500;
     }
-    label[for="theme-toggle"]:hover {
-      background: var(--accent-light);
-      color: #fff;
-    }
-
-    /* Typography */
-    h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    time {
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-
-    
-    main {
-      padding: 2rem;
-    }
-    #timeline {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    
-    .line {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    @media (min-width: 768px) {
-      .line {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    
-    .line li {
-      list-style: none;
-      position: relative;
-      padding-left: 2.5rem;
-    }
+    label[for="theme-toggle"]:hover { background: var(--accent-light); color: #fff; }
+    h3 { font-size: 1.2rem; font-weight: 600; }
+    p { font-size: 1rem; line-height: 1.6; }
+    time { font-size: 0.85rem; opacity: 0.8; }
+    main { padding: 2rem; }
+    #timeline { max-width: 1000px; margin: 0 auto; }
+    .line { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media (min-width: 768px) { .line { grid-template-columns: 1fr 1fr; } }
+    .line li { list-style: none; position: relative; padding-left: 2.5rem; }
     .line li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 1rem;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+      content: ""; position: absolute; left: 0; top: 1rem;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid #fff; box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
     }
     .line li:nth-child(1)::before { background: var(--color-1); }
     .line li:nth-child(2)::before { background: var(--color-2); }
@@ -147,59 +68,24 @@
     .line li:nth-child(4)::before { background: var(--color-4); }
     .line li:nth-child(5)::before { background: var(--color-5); }
     .line li:nth-child(6)::before { background: var(--color-6); }
-
-    
     .cont {
-      border-radius: var(--radius);
-      padding: 1rem;
+      border-radius: var(--radius); padding: 1rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       transition: transform var(--transition), box-shadow var(--transition);
-      color: #fff;
+      color: #fff; cursor: pointer;
     }
-    .line li:nth-child(1) .cont { background: var(--color-1); }
-    .line li:nth-child(2) .cont { background: var(--color-2); }
-    .line li:nth-child(3) .cont { background: var(--color-3); }
-    .line li:nth-child(4) .cont { background: var(--color-4); }
-    .line li:nth-child(5) .cont { background: var(--color-5); }
-    .line li:nth-child(6) .cont { background: var(--color-6); }
-
-    .cont:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    }
-
-    
+    .cont:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
     .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center; z-index: 1000;
     }
     .modal-content {
-      background: #fff;
-      color: #000;
-      padding: 2rem;
-      border-radius: var(--radius);
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      background: #fff; color: #000;
+      padding: 2rem; border-radius: var(--radius);
+      max-width: 500px; width: 90%; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
-    .modal.show {
-      display: flex;
-    }
-
-   
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #f0f0f0;
-      color: #444;
-      font-size: 0.9rem;
-    }
-
+    .modal.show { display: flex; }
+    footer { text-align: center; padding: 1rem; background: #f0f0f0; color: #444; font-size: 0.9rem; }
     @media (max-width: 767px) {
       main { padding: 1rem; }
       .cont h3 { font-size: 1.1rem; }
@@ -209,76 +95,82 @@
 </head>
 <body>
   <input type="checkbox" id="theme-toggle" />
-
   <div class="theme-wrapper">
     <header>
       <div class="logo">TimelineApp</div>
       <label for="theme-toggle">Toggle Theme</label>
     </header>
-
     <main>
       <section id="timeline">
-        <ul class="line">
-          <li>
-            <div class="cont">
-              <h3>Project Initiation</h3>
-              <p>Niranjana meeting and requirement gathering.</p>
-              <time>01 Jan, 2025</time>
-            </div>
-          </li>
-          <li>
-            <div class="cont">
-              <h3>UI/UX Design Phase</h3>
-              <p>Wireframes created, refined, and transformed into high-fidelity UI designs aligned with the brand.</p>
-              <time>15 Jan, 2025</time>
-            </div>
-          </li>
-          <li>
-            <div class="cont">
-              <h3>Frontend Development</h3>
-              <p>Dynamic interactions implemented with form validations for better user experience and responsiveness.</p>
-              <time>01 Feb, 2025</time>
-            </div>
-          </li>
-          <li>
-            <div class="cont">
-              <h3>Backend Development</h3>
-              <p>RESTful APIs integrated with database for secure, scalable operations and smooth frontend-backend communication.</p>
-              <time>20 Feb, 2025</time>
-            </div>
-          </li>
-          <li>
-            <div class="cont">
-              <h3>Deployment & Handover</h3>
-              <p>Application deployed to production, tested, and delivered to the client with documentation.</p>
-              <time>10 Mar, 2025</time>
-            </div>
-          </li>
-          <li>
-            <div class="cont">
-              <h3>SpringBoot</h3>
-              <input type="checkbox" id="toggle-read-more" class="read-more-toggle" hidden>
-              <div class="read-more-content">
-                <p>Spring Boot is a Java-based framework that simplifies creating production-ready Spring applications with minimal configuration.</p>
-              </div>
-              <label for="toggle-read-more" class="read-more-btn">Learn More</label>
-              <time>16 May, 2025</time>
-            </div>
-          </li>
-        </ul>
+        <ul class="line"></ul>
         <p class="copy-right">&copy; 2025 Niranjana Y D. All rights reserved.</p>
       </section>
     </main>
-
     <footer>Developed by NIRANJANA Y D</footer>
   </div>
 
-  
   <div class="modal" id="exampleModal">
-    <div class="modal-content">
-      <h2>Modal Title</h2>
-      <p>This is a placeholder modal content.</p>
-    </div>
+    <div class="modal-content"></div>
   </div>
+
+  <!--  JSON code  -->
+  <script type="application/json" id="events-data">
+  [
+    {"year": "2025-01-01","title": "Project Initiation","description": "Niranjana meeting and requirement gathering.","imageURL": "https://media.licdn.com/dms/image/v2/D5603AQE8XHOSBApsuw/profile-displayphoto-crop_800_800/B56ZgxzJAJG0AM-/0/1753182148264?e=1758153600&v=beta&t=zpX60RprOi7kk8jI4TG-J10sBuQUxlw0h17YhZnUPPY","category": "Planning"},
+    {"year": "2025-01-15","title": "UI/UX Design Phase","description": "Wireframes created, refined, and transformed into high-fidelity UI designs aligned with the brand.","imageURL": "https://media.licdn.com/dms/image/v2/D5612AQHjMDvCmU8X0A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711109035426?e=2147483647&v=beta&t=PGqVAK3juhLwsN_JhDg9oNhrqwOKvGlZmvn8-vqWiW8","category": "Design"},
+    {"year": "2025-02-01","title": "Frontend Development","description": "Dynamic interactions implemented with form validations for better user experience and responsiveness.","imageURL": "https://www.goldenwingsbim.com/assets/img/frontend3.jpg","category": "Development"},
+    {"year": "2025-02-20","title": "Backend Development","description": "RESTful APIs integrated with database for secure, scalable operations and smooth frontend-backend communication.","imageURL": "https://images.ctfassets.net/aq13lwl6616q/2w6RsKsVuc0IwHImyqx1TZ/030dff02ec89e35c72cfff4f66f0065e/Become_a_Backend_Developer.jpg","category": "Development"},
+    {"year": "2025-03-10","title": "Deployment & Handover","description": "Application deployed to production, tested, and delivered to the client with documentation.","imageURL": "https://img.freepik.com/free-photo/solar-panels-manufacturing-plant-technician-designing-conveyor-belts-pc_482257-118036.jpg?semt=ais_hybrid&w=740","category": "Deployment"},
+    {"year": "2025-05-16","title": "Spring Boot","description": "Spring Boot is a Java-based framework that simplifies creating production-ready Spring applications with minimal configuration.","imageURL": "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/393518453/original/4dfdbaf9cd406be8f374a3e0ba69d34f93367ac7/create-spring-boot-applications-java.jpg","category": "Framework"},
+    {"year": "2025-06-01","title": "Testing Phase","description": "Unit testing and integration testing performed to ensure quality.","imageURL": "https://t4.ftcdn.net/jpg/08/92/61/71/360_F_892617196_bunm2AVT75qzn5Cva2pH3Uoy94koMHsJ.jpg","category": "Testing"},
+    {"year": "2025-06-15","title": "Client Feedback","description": "Gathered client feedback for further enhancements.","imageURL": "https://images.ctfassets.net/ukazlt65o6hl/5YzMeCJZlbzcPh9GRm2c85/eb4b7546c5dc964dd89ff548542f97c1/Thumbnail?w=1920&q=50&fm=webp","category": "Review"}
+  ]
+  </script>
+
+  <!-- This is JavaScript  code -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const timeline = document.querySelector("#timeline .line");
+      const modal = document.getElementById("exampleModal");
+      const modalContent = modal.querySelector(".modal-content");
+      const closeBtn = document.createElement("button");
+      closeBtn.textContent = "Close";
+      closeBtn.style.marginTop = "1rem";
+      closeBtn.style.padding = "0.5rem 1rem";
+      closeBtn.style.background = "#0077ff";
+      closeBtn.style.color = "#fff";
+      closeBtn.style.border = "none";
+      closeBtn.style.cursor = "pointer";
+      closeBtn.style.borderRadius = "5px";
+      closeBtn.addEventListener("click", () => modal.classList.remove("show"));
+
+      const events = JSON.parse(document.getElementById("events-data").textContent);
+      events.forEach((event, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="cont" data-index="${index}" style="background: var(--color-${(index % 6) + 1});">
+            <h3>${event.title}</h3>
+            <p>${event.description.substring(0, 60)}...</p>
+            <time>${new Date(event.year).toLocaleDateString()}</time>
+          </div>
+        `;
+        timeline.appendChild(li);
+      });
+
+      document.querySelectorAll(".cont").forEach(cont => {
+        cont.addEventListener("click", () => {
+          const event = events[cont.dataset.index];
+          modalContent.innerHTML = `
+            <h2>${event.title}</h2>
+            <img src="${event.imageURL}" alt="${event.title}" style="width:100%; border-radius:10px; margin-bottom:1rem;">
+            <p>${event.description}</p>
+            <time>${new Date(event.year).toLocaleDateString()}</time>
+          `;
+          modalContent.appendChild(closeBtn);
+          modal.classList.add("show");
+        });
+      });
+    });
+  </script>
 </body>
 </html>
